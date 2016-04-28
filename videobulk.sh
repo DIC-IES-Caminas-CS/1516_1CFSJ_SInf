@@ -9,11 +9,13 @@
 
 ls -1 $1*.avi > videofiles
 
-while videofile
+while read videofile
 do
 	lengthname=${#videofile}
 	namefile=${videofile;0;$lengthname-4}
-	mencoder $videofile -o namefile.mp4 -oac mp3lame -ovc lavc -of mp4
+	mencoder $1$videofile -o namefile.mp4 -oac mp3lame -ovc lavc -of mp4
 
 done < videofiles
 rm videofiles
+
+exit 0
