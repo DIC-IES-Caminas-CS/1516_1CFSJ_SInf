@@ -18,14 +18,43 @@ fi
 
 ls -1 $1*.avi > videofiles
 
-while read videofile
-do
-	lengthname=${#videofile}	#Gets the length of the name
-	namefile=${videofile: -3}	#Gets the extension of the file
-	mencoder $videofile -o namefile.mp4 -oac mp3lame -ovc lavc
+if [ $2 == "lavc" ]
+then
+	while read videofile
+	do
+		lengthname=${#videofile}	#Gets the length of the name
+		namefile=${videofile: -3}	#Gets the extension of the file
+		mencoder $videofile -o namefile.mp4 -oac mp3lame -ovc lavc #Uses lavc codec
 
 
-done < videofiles
-rm videofiles
+	done < videofiles
+	rm videofiles
+fi
+
+if [ $2 == "x264" ]
+then
+	while read videofile
+	do
+		lengthname=${#videofile}	#Gets the length of the name
+		namefile=${videofile: -3}	#Gets the extension of the file
+		mencoder $videofile -o namefile.mp4 -oac mp3lame -ovc x264 #Uses x264 codec
+
+
+	done < videofiles
+	rm videofiles
+fi
+
+if [ $2 == "frameno" ]
+then
+	while read videofile 
+	do
+		lengthname=${#videofile}	#Gets the length of the name
+		namefile=${videofile: -3}	#Gets the extension of the file
+		mencoder $videofile -o namefile.mp4 -oac mp3lame -ovc frameno #Uses frameno codec
+
+
+	done < videofiles
+	rm videofiles
+fi
 
 exit 0
