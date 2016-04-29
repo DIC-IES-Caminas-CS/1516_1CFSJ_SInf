@@ -23,8 +23,8 @@ then
 	while read videofile
 	do
 		lengthname=${#videofile}	#Gets the length of the name
-		namefile=${videofile: -3}	#Gets the extension of the file
-		mencoder $videofile -o namefile.mp4 -oac mp3lame -ovc lavc #Uses lavc codec
+		namefile=${videofile:0:lengthname-4}	#Gets just the name (without extension)
+		mencoder $videofile -o $namefile.mp4 -oac mp3lame -ovc lavc #Uses lavc codec
 
 
 	done < videofiles
@@ -36,8 +36,8 @@ then
 	while read videofile
 	do
 		lengthname=${#videofile}	#Gets the length of the name
-		namefile=${videofile: -3}	#Gets the extension of the file
-		mencoder $videofile -o namefile.mp4 -oac mp3lame -ovc x264 #Uses x264 codec
+		namefile=${videofile:0:lengthname-4}	#Gets just the name (without extension)
+		mencoder $videofile -o $namefile.mp4 -oac mp3lame -ovc x264 #Uses x264 codec
 
 
 	done < videofiles
@@ -49,8 +49,8 @@ then
 	while read videofile 
 	do
 		lengthname=${#videofile}	#Gets the length of the name
-		namefile=${videofile: -3}	#Gets the extension of the file
-		mencoder $videofile -o namefile.mp4 -oac mp3lame -ovc frameno #Uses frameno codec
+		namefile=${videofile:0:lengthname-4}	#Gets just the name (without extension)
+		mencoder $videofile -o $namefile.mp4 -oac mp3lame -ovc frameno #Uses frameno codec
 
 
 	done < videofiles
